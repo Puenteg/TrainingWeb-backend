@@ -1,0 +1,53 @@
+{
+    "usuario": {
+        "usuario": "string",
+        "contrasena":"string",
+        "nombre": "nombre",
+        "apellido": "apellido",
+        "foto": "/src/img/",
+        "contacto": {
+            "numero": 127836,
+            "correo": "a@b.com"
+        },
+        "tipoUsuario": [
+            "profesional",
+            "cliente",
+            "administardor"
+        ],
+        "tipoProfesional": "Entrenador",
+        "tituloPresentacion": "",
+        "presentacion": "",
+        "estatus": "activo"
+    },
+    "dieta": {
+        "nombre": "string",
+        "descripcion": "",
+        "lunes": {
+            "desayuno": "",
+            "comida": "",
+            "cena": "" 
+        },
+        "martes": {
+            "desayuno": "",
+            "comida": "",
+            "cena": "" 
+        },
+        "creadaPor": ""
+    },
+    "rutina": {
+        "nombre": "string",
+        "descripcion": "",
+        "ayudaVisual": "",
+        "lunes": {
+            "desayuno": "",
+            "comida": "",
+            "cena": "" 
+        },
+        "martes": {
+            "desayuno": "",
+            "comida": "",
+            "cena": "" 
+        },
+        "creadaPor": ""
+    }
+}
