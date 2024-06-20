@@ -44,7 +44,7 @@ const upload = multer({ storage });
 
 // Prefilter
 app.use("/", (req, res, next) => {
-  console.info("*** PreFilter");
+  console.info("*** PreFilter: ", process.env.urlFrontEnd);
   const cookieUser = req.cookies?.SesionUserABC;
   console.info("Valida Ruta segura: ", req.url);
   if (req.url == "/api/usuario/logOut") {
