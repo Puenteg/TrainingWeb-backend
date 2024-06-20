@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const recursoController = require('../controllers/recursoController');
+const recursoController = require('./../controllers/recursoController');
 
 
 router.get('/empleado', recursoController.getRecursoPorEmpleado)
