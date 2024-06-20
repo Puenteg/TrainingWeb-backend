@@ -50,6 +50,7 @@ app.use("/", (req, res, next) => {
   if (req.url == "/api/usuario/logOut") {
     console.info("Borra cookie");
     const optionsCookie = {
+      domain: `${process.env.urlFrontEnd}`,
       maxAge: 1000, // would expire after 1 second
       httpOnly: true, // The cookie only accessible by the web server
       //signed: true // Indicates if the cookie should be signed
