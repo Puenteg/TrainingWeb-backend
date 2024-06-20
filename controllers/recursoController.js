@@ -1,4 +1,4 @@
-const Recurso = require("./../models/recurso.js");
+const Recurso = require("./../models/Recurso.js");
 const { transporter } = require("./../nodemailer.js"); // Ajusta la ruta según tu estructura de carpetas
 const Empleado = require("./../models/Empleado.js"); // Ajusta la ruta según tu estructura de carpetas
 
