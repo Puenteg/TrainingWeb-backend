@@ -13,7 +13,7 @@ require("dotenv").config({ path: "variables.env" });
 conectarDB();
 app.use(
   cors({
-    origin: `${process.env.urlFrontEnd}`,
+    origin: `*`,
     credentials: true
   })
 );
@@ -43,7 +43,7 @@ const upload = multer({ storage });
 // Prefilter
 app.use("/", (req, res, next) => {
   console.info("*** PreFilter: ", process.env.urlFrontEnd);
-  const cookieUser = req.cookies?.SesionUserABC;
+  const cookieUser = req.cookies?.SesionUserABC || true;
   console.info("Valida Ruta segura: ", req.url);
   if (req.url == "/api/usuario/logOut") {
     console.info("Borra cookie");
