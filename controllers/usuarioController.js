@@ -24,9 +24,9 @@ exports.validaCredenciales = async (req, res) => {
     const usuarios = await Usuario.find(filters);
     if (usuarios.length === 1) {
       const optionsCookie = {
-        domain: `${process.env.urlFrontEnd}`,
+        // domain: `${process.env.urlFrontEnd}`,
         maxAge: 1000 * 60, // would expire after N Miliseconds
-        httpOnly: true, // The cookie only accessible by the web server
+        httpOnly: false, // The cookie only accessible by the web server
         //signed: true // Indicates if the cookie should be signed
       };
       res.cookie("SesionUserABC", `${usuarios[0].nombre}`, optionsCookie);

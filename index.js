@@ -14,9 +14,7 @@ conectarDB();
 app.use(
   cors({
     origin: `${process.env.urlFrontEnd}`,
-    credentials: true,
-    allowedHeaders: ["Content-type", "access-control-allow-credentials"],
-    exposedHeaders: ["Content-type", "access-control-allow-credentials"],
+    credentials: true
   })
 );
 app.use(cookieParser());
@@ -50,9 +48,9 @@ app.use("/", (req, res, next) => {
   if (req.url == "/api/usuario/logOut") {
     console.info("Borra cookie");
     const optionsCookie = {
-      domain: `${process.env.urlFrontEnd}`,
+      // domain: `${process.env.urlFrontEnd}`,
       maxAge: 1000, // would expire after 1 second
-      httpOnly: true, // The cookie only accessible by the web server
+      httpOnly: false, // The cookie only accessible by the web server
       //signed: true // Indicates if the cookie should be signed
     };
     res.cookie("SesionUserABC", `${cookieUser}`, optionsCookie);
@@ -67,9 +65,9 @@ app.use("/", (req, res, next) => {
     if (cookieUser) {
       next();
       const optionsCookie = {
-        domain: `${process.env.urlFrontEnd}`,
+        // domain: `${process.env.urlFrontEnd}`,
         maxAge: 1000 * 60, // would expire after N Miliseconds
-        httpOnly: true, // The cookie only accessible by the web server
+        httpOnly: false, // The cookie only accessible by the web server
         //signed: true // Indicates if the cookie should be signed
       };
       res.cookie("SesionUserABC", `${cookieUser}`, optionsCookie);
