@@ -5,11 +5,39 @@ const RutinasSchema = mongoose.Schema({
         type: Number,
         require: true
     },
-    nombreRutnia: {
+    nombre: {
         type: String,
         require: true
     },
     descripcion: {
+        type: String,
+        require: true
+    },
+    lunes: {
+        type: String,
+        require: true
+    },
+    martes: {
+        type: String,
+        require: true
+    },
+    miercoles: {
+        type: String,
+        require: true
+    },
+    jueves: {
+        type: String,
+        require: true
+    },
+    viernes: {
+        type: String,
+        require: true
+    },
+    sabado: {
+        type: String,
+        require: true
+    },
+    domingo: {
         type: String,
         require: true
     },
