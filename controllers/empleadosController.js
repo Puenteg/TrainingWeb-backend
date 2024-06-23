@@ -6,7 +6,18 @@ exports.crearEmpleado = async (req, res) => {
     try{
         let empleado;
         //crear empleado
-        empleado = new Empleado({...req.body, roles: ['usuario'] });
+        empleado = new Empleado({...req.body });
+        // Valida la NO existencia del usuario a Crear
+        let usuarioExistente = await Empleado.find({nombre: empleado.nombre});
+        if(usuarioExistente.length > 0) {
+            console.info(usuarioExistente);
+            return res.status(400).send({message: 'El nombre de usuario que intenta registrar ya ha sido creado. Intente con otro'})
+        }
+        usuarioExistente = await Empleado.find({email: empleado.email});
+        if(usuarioExistente.length > 0) {
+            console.info(usuarioExistente);
+            return res.status(400).send({message: 'El correo electronico que intenta registrar ya ha sido creado. Intente con otro'})
+        }
 
         await empleado.save();
         const mailOptions = {
