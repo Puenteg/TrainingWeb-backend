@@ -9,6 +9,10 @@ const RutinasSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    autor: {
+        type: String,
+        require: true
+    },
     descripcion: {
         type: String,
         require: true

@@ -5,7 +5,15 @@ const EmpleadoEsquema = mongoose.Schema({
         type: Number,
         require: true
     },
+    usuario: {
+        type: String,
+        require: true
+    },
     nombre: {
+        type: String,
+        require: true
+    },
+    apellido: {
         type: String,
         require: true
     },

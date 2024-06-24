@@ -8,7 +8,7 @@ exports.crearEmpleado = async (req, res) => {
         //crear empleado
         empleado = new Empleado({...req.body, estatus: 'inactivo' });
         // Valida la NO existencia del usuario a Crear
-        let usuarioExistente = await Empleado.find({nombre: empleado.nombre});
+        let usuarioExistente = await Empleado.find({usuario: empleado.usuario});
         if(usuarioExistente.length > 0) {
             console.info(usuarioExistente);
             return res.status(400).send({message: 'El nombre de usuario que intenta registrar ya ha sido creado. Intente con otro'})
@@ -24,7 +24,7 @@ exports.crearEmpleado = async (req, res) => {
             from: 'cesarcruz61717@gmail.com',
             to: empleado.email,
             subject: 'Confirmación de registro',
-            html: `Bienvenido ${empleado.nombre}
+            html: `Bienvenido ${empleado.usuario}
             Hemos recibido la petición de unirte a Training Web, para confirmar el registro da clic en el siguiente enlace:
             <a href="${process.env.urlBackEnd}/api/usuario/verificar?_id=${newEmpleado._id}">Activar Cuenta</a>
             Si no has solicitado este correo, puedes ignorarlo`,

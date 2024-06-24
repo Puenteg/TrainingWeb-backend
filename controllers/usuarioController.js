@@ -18,7 +18,7 @@ exports.createUsuario = async (req, res) => {
 exports.validaCredenciales = async (req, res) => {
   console.info("::validaCredenciales");
   try {
-    const filters = { nombre: req.body.username, contraseña: req.body.pwd, estatus: 'activo' };
+    const filters = { usuario: req.body.usuario, contraseña: req.body.pwd, estatus: 'activo' };
     console.info("body: ", req.body);
     console.info("filtros: ", filters);
     const usuarios = await Usuario.find(filters);
@@ -29,13 +29,13 @@ exports.validaCredenciales = async (req, res) => {
         httpOnly: false, // The cookie only accessible by the web server
         //signed: true // Indicates if the cookie should be signed
       };
-      res.cookie("SesionUserABC", `${usuarios[0].nombre}`, optionsCookie);
+      res.cookie("SesionUserABC", `${usuarios[0].usuario}`, optionsCookie);
       res.set("Access-Control-Allow-Credentials", "true");
 
       const codigoVerificador = generaCodigoVerificador();
       enviaEmailCodVerificador(
         usuarios[0].email,
-        usuarios[0].nombre,
+        usuarios[0].usuario,
         codigoVerificador
       );
       res.json({ usuario: usuarios[0], codVerificador: codigoVerificador });
@@ -60,7 +60,7 @@ exports.recuperaContrasena = async (req, res) => {
       const contrasena = generaContraseña();
       // TODO: envia contraseña por correo
 
-      enviaEmail(usuario.email, usuario.nombre, contrasena);
+      enviaEmail(usuario.email, usuario.usuario, contrasena);
 
       console.info(contrasena);
       usuario.contraseña = contrasena;
