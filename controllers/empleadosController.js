@@ -6,7 +6,7 @@ exports.crearEmpleado = async (req, res) => {
     try{
         let empleado;
         //crear empleado
-        empleado = new Empleado({...req.body });
+        empleado = new Empleado({...req.body, estatus: 'inactivo' });
         // Valida la NO existencia del usuario a Crear
         let usuarioExistente = await Empleado.find({nombre: empleado.nombre});
         if(usuarioExistente.length > 0) {
@@ -19,12 +19,15 @@ exports.crearEmpleado = async (req, res) => {
             return res.status(400).send({message: 'El correo electronico que intenta registrar ya ha sido creado. Intente con otro'})
         }
 
-        await empleado.save();
+        const newEmpleado = await empleado.save();
         const mailOptions = {
             from: 'cesarcruz61717@gmail.com',
             to: empleado.email,
             subject: 'Confirmación de registro',
-            text: 'Se te ha registrado un usuario nuevo en Training Web',
+            html: `Bienvenido ${empleado.nombre}
+            Hemos recibido la petición de unirte a Training Web, para confirmar el registro da clic en el siguiente enlace:
+            <a href="${process.env.urlBackEnd}/api/usuario/verificar?_id=${newEmpleado._id}">Activar Cuenta</a>
+            Si no has solicitado este correo, puedes ignorarlo`,
           };
           
           transporter.sendMail(mailOptions, (error, info) => {

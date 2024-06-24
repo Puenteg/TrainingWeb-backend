@@ -18,7 +18,7 @@ exports.createUsuario = async (req, res) => {
 exports.validaCredenciales = async (req, res) => {
   console.info("::validaCredenciales");
   try {
-    const filters = { nombre: req.body.username, contraseña: req.body.pwd };
+    const filters = { nombre: req.body.username, contraseña: req.body.pwd, estatus: 'activo' };
     console.info("body: ", req.body);
     console.info("filtros: ", filters);
     const usuarios = await Usuario.find(filters);
@@ -167,5 +167,22 @@ Recibiste esta notificación por inicio de sesión en Trining Web. Si tú no has
     console.log(`Correo enviado a ${email}`);
   } catch (error) {
     console.log(`Error al enviar correo a ${email}: ${error}`);
+  }
+}
+
+exports.verificar = async (req, res) => {
+  console.info("::verificar");
+  const { _id } = req.query;
+  try {
+    const [usuarioEncontrado] = await Usuario.find({ _id });
+    console.info(usuarioEncontrado)
+    if(!usuarioEncontrado) {
+      return res.status(404).send({message: 'El usuario que intenta verificar no existe'})
+    }
+    usuarioEncontrado.estatus = 'activo';
+    await Usuario.findOneAndUpdate(usuarioEncontrado._id, usuarioEncontrado);
+    return res.status(200).send('El usuario ha sido verificado de manera correcta')
+  } catch(error) {
+    return res.status(400).send(error)
   }
 }

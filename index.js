@@ -59,7 +59,8 @@ app.use("/", (req, res, next) => {
   } else if (
     req.url != "/api/empleados/" &&
     req.url != "/api/usuario/valida_credenciales" &&
-    req.url != "/api/usuario/recupera_contrasena"
+    req.url != "/api/usuario/recupera_contrasena" &&
+    req.url != "/api/usuario/verificar"
   ) {
     console.info("Validación de jwt", cookieUser);
     if (cookieUser) {

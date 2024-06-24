@@ -7,6 +7,7 @@ const usuarioController = require('../controllers/usuarioController');
 // router.post('/',  usuarioController.createUsuario);
 router.post('/valida_credenciales', usuarioController.validaCredenciales);
 router.post('/recupera_contrasena', usuarioController.recuperaContrasena);
+router.get('/verificar', usuarioController.verificar);
 /* router.put('/:id', usuarioController.updateUsuario);
 router.get('/:id', usuarioController.getUsuarioId);
 router.delete('/:id', usuarioController.deleteUsuario); */
