@@ -40,7 +40,19 @@ const EmpleadoEsquema = mongoose.Schema({
     roles: [{
         type: String,
         require: false
-    }]
+    }],
+    descripcionCorta: {
+        type: String,
+        require:false
+    },
+    descripcion: {
+        type: String,
+        require:false
+    },
+    imagen: {
+        type: String,
+        require: true
+    }
 });
 
 module.exports = mongoose.model('Empleado', EmpleadoEsquema);

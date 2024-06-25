@@ -87,6 +87,7 @@ app.use("/api/empleado", require("./routes/empleado"));
 app.use("/api/departamento", require("./routes/departamento"));
 app.use("/api/dietas", upload.single("imagen"), require("./routes/dietas"));
 app.use("/api/rutinas", upload.single("imagen"), require("./routes/rutinas"));
+// app.use("/api/profesionales", upload.single("imagen"), require("./routes/profesionales"));
 app.use("/api/profesionales", upload.single("imagen"), require("./routes/profesionales"));
 app.use("/api/gama", require("./routes/gama"));
 
@@ -94,7 +95,7 @@ app.use("/api/marca", require("./routes/marca"));
 
 app.use("/", require("./routes/empleado"));
 
-app.use("/api/usuario", require("./routes/usuario"));
+app.use("/api/usuario", upload.single("imagen"), require("./routes/usuario"));
 
 //app.use('/api/privilegio', require('./routes/privilegio'));
 //app.use('/api/nombreRol', require('./routes/nombreRol'));
