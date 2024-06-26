@@ -7,6 +7,7 @@ const rutinasController = require('../controllers/rutinasController');
 router.post('/', rutinasController.createRutina);
 router.get('/', rutinasController.getRutina);
 router.get('/:id', rutinasController.getRutinaId);
+router.delete('/:id', rutinasController.deleteById);
 
 
 //Estados

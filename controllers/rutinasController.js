@@ -53,3 +53,13 @@ exports.getRutinaId = async (req, res) => {
         res.status(500).send('Hubo un error');
     }
 }
+
+exports.deleteById = async (req, res) => {
+    console.info('deleteRutinaById::', req.params.id)
+    const dieta = await Rutina.findByIdAndDelete(req.params.id);
+    if (!dieta) {
+        res.status(404).json({ msg: 'No existe esta dieta' })
+    } else {
+        res.json(dieta);
+    }
+}
